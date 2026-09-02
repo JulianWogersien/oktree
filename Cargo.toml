@@ -9,12 +9,14 @@ license = "MIT"
 
 [features]
 default = ["std"]
-std = ["num/default", "bevy/default"]
+std = ["num/default", "cgmath/swizzle"]
 bevy = ["dep:bevy"]
+cgmath = ["dep:cgmath"]
 
 [dependencies]
 num = { version = "0.4.3", default-features = false }
 bevy = { version = ">=0.10", optional = true }
+cgmath = { git = "https://github.com/JulianWogersien/cgmath", optional = true }
 heapless = "0.9.2"
 smallvec = { version = "1.15.1", features = ["const_generics"] }
 

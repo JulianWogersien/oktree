@@ -1883,6 +1883,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
 
 [[package]]
+name = "cgmath"
+version = "0.18.0"
+source = "git+https://github.com/JulianWogersien/cgmath#8903b3d39fddb8358b65548a107370e097c3740a"
+dependencies = [
+ "approx",
+ "num-traits",
+]
+
+[[package]]
 name = "chacha20"
 version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3956,6 +3965,7 @@ name = "oktree"
 version = "0.5.1"
 dependencies = [
  "bevy",
+ "cgmath",
  "criterion",
  "heapless",
  "num",
