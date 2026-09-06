@@ -25,14 +25,15 @@ impl<U, T> Octree<U, T> where U: Unsigned, T: Volume<U = U> {
     /// ```rust
     /// use oktree::prelude::*;
     /// use cgmath::prelude::*;
-    /// use cgmath::{bounding::RayCast3d, Vec3A};
+    /// use cgmath::raycast::RayCast3d;
+    /// use cgmath::{Point3, Vector3};
     ///
-    /// let mut tree = Octree::from_aabb(Aabb::new(TUVec3::from_value(16), 16).unwrap());
+    /// let mut tree = Octree::from_aabb(Aabb::new(TUVec3::splat(16), 16).unwrap());
     ///
     /// let c1 = TUVec3u8::new(1u8, 1, 1);
     /// let c1_id = tree.insert(c1).unwrap();
     ///
-    /// let ray = RayCast3d::new(Vec3A::new(5.0, 1.5, 1.5), Dir3A::NEG_X, 10.0);
+    /// let ray = RayCast3d::new(Point3::new(5.0, 1.5, 1.5), -Vector3::unit_x(), 10.0);
     ///
     /// assert_eq!(
     ///     tree.ray_cast(&ray),
@@ -104,19 +105,19 @@ impl<U, T> Octree<U, T> where U: Unsigned, T: Volume<U = U> {
     /// ```rust
     /// use oktree::prelude::*;
     /// use cgmath::prelude::*;
-    /// use cgmath::{bounding::{BoundingSphere, Aabb3d}, Vec3};
+    /// use cgmath::{bounding::{BoundingSphere, AABB3d}, Vector3, Point3};
     ///
-    /// let mut tree = Octree::from_aabb(Aabb::new(TUVec3::from_value(16), 16).unwrap());
+    /// let mut tree = Octree::from_aabb(Aabb::new(TUVec3::splat(16), 16).unwrap());
     ///
     /// let c1 = TUVec3u8::new(1u8, 1, 1);
     /// let c1_id = tree.insert(c1).unwrap();
     ///
     /// // Bounding box intersection
-    /// let aabb = Aabb3d::new(Vec3::new(0.0, 0.0, 0.0), Vec3::from_value(5.0));
+    /// let aabb = AABB3d::new(Point3::origin(), Vector3::from_value(5.0));
     /// assert_eq!(tree.intersect(&aabb), vec![c1_id]);
     ///
     /// // Bounding sphere intersection
-    /// let sphere = BoundingSphere::new(Vec3::new(0.0, 0.0, 0.0), 6.0);
+    /// let sphere = BoundingSphere::new(Point3::origin(), 6.0);
     /// assert_eq!(tree.intersect(&sphere), vec![c1_id]);
     /// ```
     pub fn intersect<Volume: IntersectsVolume<AABB3d<f32>>>(

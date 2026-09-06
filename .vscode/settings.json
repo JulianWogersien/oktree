@@ -2,5 +2,5 @@
     "editor.formatOnSave": true,
     "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": "on",
-    "rust-analyzer.cargo.features": [],
+    "rust-analyzer.cargo.features": ["cgmath"],
 }
