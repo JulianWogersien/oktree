@@ -7,6 +7,9 @@ Fast octree implementation.
 
 ![Example](/assets/example.gif)
 
+Custom fork (probably wont merge back into the original unless asked to as it requires a fork of cgmath)
+Adds the cgmath feature (requires a custom fork by me) so what before was only available to bevy users now becomes available to cgmath users
+
 Able to operate with [`Position`](https://docs.rs/oktree/latest/oktree/trait.Position.html) or [`Volume`](https://docs.rs/oktree/latest/oktree/trait.Volume.html) data.
 
 Could be used with the Bevy game engine or as a standalone tree.
