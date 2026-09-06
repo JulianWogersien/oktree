@@ -3,50 +3,84 @@ name = "oktree"
 description = "Fast octree implementation."
 version = "0.5.1"
 repository = "https://github.com/exor2008/oktree"
-keywords = ["graphics", "bevy", "voxel", "octree"]
+keywords = ["graphics", "bevy", "voxel", "octree", "cgmath"]
 edition = "2021"
 license = "MIT"
 
 [features]
 default = ["std"]
-std = ["num/default", "bevy/default"]
+std = ["num/default"]
 bevy = ["dep:bevy"]
+cgmath = ["dep:cgmath"]
 
 [dependencies]
 num = { version = "0.4.3", default-features = false }
 bevy = { version = ">=0.10", optional = true }
+cgmath = { git = "https://github.com/JulianWogersien/cgmath", optional = true }
 heapless = "0.9.2"
 smallvec = { version = "1.15.1", features = ["const_generics"] }
 
 [dev-dependencies]
 criterion = "0.8.2"
-rand = "0.10.0"
+rand = { version = "0.10.0", features = ["thread_rng"] }
 wee_alloc = "0.4.5"
+macroquad = "0.4.16"
 
 [[bench]]
-name = "benchmark"
+name = "bevy_benchmark"
+path = "benches/bevy_benchmark.rs"
 harness = false
 required-features = ["bevy"]
 
+[[bench]]
+name = "cgmath_benchmark"
+path = "benches/cgmath_benchmark.rs"
+harness = false
+required-features = ["cgmath"]
+
 [[example]]
-name = "simple"
-path = "examples/simple.rs"
+name = "bevy_simple"
+path = "examples/bevy/simple.rs"
 required-features = ["bevy"]
 
 [[example]]
 name = "bevy_tree"
-path = "examples/bevy_tree.rs"
+path = "examples/bevy/bevy_tree.rs"
 required-features = ["bevy"]
 
 [[example]]
 name = "profile"
 path = "examples/profile.rs"
+
+[[example]]
+name = "bevy_no_std"
+path = "examples/bevy/no_std.rs"
 required-features = ["bevy"]
 
 [[example]]
-name = "no_std"
-path = "examples/no_std.rs"
+name = "bevy_volume"
+path = "examples/bevy/volume.rs"
 required-features = ["bevy"]
+
+[[example]]
+name = "cgmath_volume"
+path = "examples/cgmath/volume.rs"
+required-features = ["cgmath"]
+
+[[example]]
+name = "cgmath_simple"
+path = "examples/cgmath/simple.rs"
+required-features = ["cgmath"]
+
+[[example]]
+name = "cgmath_no_std"
+path = "examples/cgmath/no_std.rs"
+required-features = ["cgmath"]
+
+[[example]]
+name = "cgmath_tree"
+path = "examples/cgmath/tree.rs"
+required-features = ["cgmath"]
 
 [package.metadata.docs.rs]
 all-features = true
